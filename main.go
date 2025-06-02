@@ -494,7 +494,7 @@ func downloadTuiFlow(flow TuiFlowTemplate) {
 					}
 					fmt.Printf("%s, dir: %s", video.Name, dir)	
 					err := ffmpeg.Input(video.Request.Url, ffmpeg.KwArgs{"extension_picky": "0"}).
-					Output(video.Name + ".mkv", ffmpeg.KwArgs{"codec": "copy"}).
+					Output(blb.SanitizeFilename(video.Name) + ".mkv", ffmpeg.KwArgs{"codec": "copy"}).
 		OverWriteOutput().ErrorToStdOut().Run()
 		if err != nil {
 			fmt.Printf("Failed to parse m3u playlist %s", video.Name)
