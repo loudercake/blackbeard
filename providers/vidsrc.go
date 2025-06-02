@@ -1,4 +1,4 @@
-// 9Anime.me provider
+// vidsrc.me provider
 
 package providers
 
