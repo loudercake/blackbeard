@@ -51,7 +51,7 @@ require (
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.0
-	github.com/andelf/go-curl v0.0.0-20200630032108-fd49ff24ed97
+	github.com/andelf/go-curl v0.0.0-20250312014544-8683354c1636
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/c-bata/go-prompt v0.2.6
 	github.com/cavaliergopher/grab/v3 v3.0.1

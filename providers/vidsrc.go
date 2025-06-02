@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+	"net/url"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/go-rod/rod"
@@ -27,7 +28,7 @@ func (a vidsrc) Info() blackbeard.ProviderInfo {
 
 func (a vidsrc) SearchShows(query string) []blackbeard.Show {
 	rootUrl := "https://www.themoviedb.org"
-	url := rootUrl + "/search?query=" + query
+	url := rootUrl + "/search?query=" + url.QueryEscape(query)
 
 	// Find shows
 	var shows []blackbeard.Show
@@ -45,6 +46,10 @@ func (a vidsrc) GetEpisodes(shows *blackbeard.Show) []blackbeard.Episode {
 	rootUrl := "https://vidsrc.xyz"
 	re := regexp.MustCompile("\\/(tv|movie)\\/[0-9]*")
 	url := rootUrl + "/embed" + re.FindString(shows.Url)
+	if strings.Contains(url, "movie") {
+		shows.Episodes = append(shows.Episodes, blackbeard.Episode{Title: shows.Title, Url: url})
+		return shows.Episodes
+	}
 	request := blackbeard.Request{Url: url, Debug: true}
 	blackbeard.ScrapePage(request, ".ep", func(i int, s *goquery.Selection) {
 		title := s.Text()
