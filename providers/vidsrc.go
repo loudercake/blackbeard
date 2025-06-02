@@ -21,7 +21,7 @@ func (a vidsrc) Info() blackbeard.ProviderInfo {
 	return blackbeard.ProviderInfo{
 		Name: "vidsrc",
 		Url: "https://vidsrc.me/",
-		Description: "9anime is a free anime website where millions visit to watch anime online.",
+		Description: "Movie/TV embedding service",
 	}
 }
 
