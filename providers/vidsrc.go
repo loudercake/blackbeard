@@ -35,6 +35,9 @@ func (a vidsrc) SearchShows(query string) []blackbeard.Show {
 	request := blackbeard.Request{Url: url, Method: "GET", Debug: true}
 	blackbeard.ScrapePage(request, ".title", func(i int, s *goquery.Selection) {
 		aTag := s.Find("a")
+		if aTag.Text() == "" {
+			return
+		}
 		title := aTag.Text()
 		href := aTag.AttrOr("href", "")
 		shows = append(shows, blackbeard.Show{Url: rootUrl + href, Title: title})
