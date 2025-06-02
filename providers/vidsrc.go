@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
-	"path"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/go-rod/rod"
@@ -88,5 +87,5 @@ func (a vidsrc) GetVideo(episode *blackbeard.Episode) blackbeard.Video {
 	url := GetVidUrl(embed)
 		
 
-	return blackbeard.Video{Name: path.Base(url), Request: blackbeard.Request{Url: url}, Format: "m3u8"}
+	return blackbeard.Video{Name: episode.Title, Request: blackbeard.Request{Url: url}, Format: "m3u8"}
 }
